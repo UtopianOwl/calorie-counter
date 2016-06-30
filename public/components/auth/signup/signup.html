@@ -1,0 +1,30 @@
+<div class="row form">
+    <div class="col-md-4 col-md-offset-4">
+        <h3>Sign Up</h3>
+        <form novalidate>
+            <div class="control-group">
+                <div class="form-control">
+                    <label for="name">Full Name</label>
+                    <input class="form-control" type="text" ng-model="newUser.name">
+                </div>
+                <div class="control-control">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" ng-model="newUser.username">
+                </div>
+                <div class="control-control">
+                    <label for="email">email</label>
+                    <input class="form-control" type="email" ng-model="newUser.email">
+                </div>
+                <div class="control-control">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" ng-model="newUser.password">
+                </div>
+                <div class="control-control">
+                    <label for="repeat-password">Retype Password</label>
+                    <input class="form-control" type="password" ng-model="passwordRepeat">
+                </div>
+                <button class="btn btn-primary btn-small" ng-click="signup(newUser)"></button>
+            </div>
+        </form>
+    </div>
+</div>
