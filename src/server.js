@@ -1,6 +1,5 @@
 var express = require("espress");
 var app = express();
-var bcrypt = require("bcrypt");
 var bodyParser = require("body-parser");
 var config = require("./config.js");
 var cors = require("cors");
