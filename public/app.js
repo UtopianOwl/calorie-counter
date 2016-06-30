@@ -14,4 +14,11 @@ app.config(function ($routeProvider) {
             templateUrl: "components/profile/profile.html",
             controller: "ProfileController"
         })
+        .when("/track", {
+            templateUrl: "components/track/track.html",
+            controller: "TrackController"
+        })
+        .otherwise({
+            redirectTo: "/"
+        });
 });
