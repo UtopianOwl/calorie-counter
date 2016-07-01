@@ -6,9 +6,7 @@ var config = require("../config");
 var User = require("../models/user");
 
 authRouter.post("/login", function (req, res) {
-    User.findOne({
-        username: req.body.username
-    }, function (err, user) {
+    User.findOne({username: req.body.username}, function (err, user) {
         if (err) res.status(500).send(err);
         else if (!user) res.status(401).send({
             success: false,
@@ -36,9 +34,7 @@ authRouter.post("/login", function (req, res) {
 });
 
 authRouter.post("/signup", function (req, res) {
-    User.findOne({
-        username: req.body.username
-    }, function (err, existingUser) {
+    User.findOne({username: req.body.username}, function (err, existingUser) {
         if (err) res.status(500).send(err);
         else if (existingUser) res.status(401).send({success: false, message: "That username is already taken."});
         else {
