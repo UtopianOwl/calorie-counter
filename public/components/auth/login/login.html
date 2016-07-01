@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h3>Login</h3>
+        <form novalidate>
+            <fieldset class="form-group">
+               <div class="control-group">
+                   <label for="username">username</label>
+                   <input class="form-control" type="text" ng-model="user.name">
+               </div>
+                <div class="control-group">
+                   <label for="password">password</label>
+                   <input class="form-control" type="text" ng-model="user.password">
+               </div>
+               <button class="btn btn-md btn-primary" ng-click="login(user)">Login</button>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-var express = require("espress");
+var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var config = require("./config.js");
@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/api", expressJwt({secret: config.secret}));
 
 app.use("/auth", require("./routes/authRoutes"));
-app.use("/api/meals", require("./routes/mealRoutes"));
+app.use("/api/foods", require("./routes/foodRoutes"));
 
 app.listen(port, function() {
     console.log("App is lisetening on Port" + port + ".")
