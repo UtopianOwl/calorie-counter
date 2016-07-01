@@ -23,4 +23,10 @@ app.service("MealService", ["$http", function($http) {
         });
     }
     
+    this.updateMeal = function(index, meal) {
+        return $http.put(baseUrl + meal._id, meal).then(function(response) {
+            
+        });
+    }
+    
 }]);
