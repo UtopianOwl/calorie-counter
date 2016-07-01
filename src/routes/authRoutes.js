@@ -50,7 +50,7 @@ authRouter.post("/signup", function (req, res) {
     });
 });
 
-authRouter.put("/edit-user/:userId", function (req, res) {
+authRouter.put("/edit/:userId", function (req, res) {
     User.findByIdAndUpdate(req.params.userId, req.body, {new:true}, function(err, user) {
         if (err) res.status(500).send(err);
         else {
