@@ -5,46 +5,49 @@
             <h2>Account Details</h2>
             <form novalidate>
                 <div class="form-group">
+                    <button class="btn btn-lrg btn-danger" ng-hide="editing" ng-click="editing = true">Edit</button>
+                    <button class="btn btn-lrg btn-danger" ng-show="editing" ng-click="saveTheThings(user); editing = !editing">Save</button>
                     <div class="row">
                         <div class="col-md-6 control-group">
                             <label for="name">name</label>
-                            <div class="edit" ng-show="name.editing">
-                                <input class="form-control" ng-model="user.name">
-                                <button ng-click="editField()">done</button>
+                            <div class="edit" ng-show="editing">
+                                <input class="form-control" ng-show="editing" ng-model="user.name">
                             </div>
-                            <div class="view" ng-hide="name.editing">
+                            <div class="view" ng-hide="editing">
                                 <h4>{{ user.name }}</h4>
-                                <button ng-click="name.editing = !name.editing">Edit</button>
                             </div>
                         </div>
                         <div class="col-md-6 control-group">
+                            <!--                           USER -->
                             <label for="user">user</label>
-                            div.edit
-                            <input class="form-control" ng-model="user.user" ng-hide="!user.editing" ng-show="user.editing">
-                            <button ng-click="user.editing = !user.editing">done</button>
-                            div.view
-                            <h4>{{ user.user }}</h4>
-                            <button ng-click="user.editing = !user.editing">Edit</button>
+                            <div class="edit" ng-show="editing">
+                                <input class="form-control" ng-show="editing" ng-model="user.user" ng-hide="!user.editing" ng-show="user.editing">
+                            </div>
+                            <div class="view" ng-hide="editing">
+                                <h4>{{ user.user }}</h4>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 control-group">
                             <label for="email">email</label>
-                            div.edit
-                            <input class="form-control" ng-model="user.email" ng-hide="!email.editing" ng-show="email.editing">
-                            <button ng-click="email.editing = !email.editing">done</button>
-                            div.view
-                            <h4>{{ user.email }}</h4>
-                            <button ng-click="email.editing = !email.editing">Edit</button>
+                            <div class="edit" ng-show="editing">
+                                <input class="form-control" ng-show="editing" ng-model="user.email" ng-hide="!email.editing" ng-show="email.editing">
+                            </div>
+                            <div class="view" ng-hide="editing">
+                                <h4>{{ user.email }}</h4>
+                            </div>
+
                         </div>
                         <div class="col-md-6 control-group">
                             <label for="password">password</label>
-                            div.edit
-                            <input class="form-control" ng-model="user.password" ng-hide="!password.editing" ng-show="password.editing">
-                            <button ng-click="password.editing = !password.editing">done</button>
-                            div.view
-                            <h4>{{ user.password }}</h4>
-                            <button ng-click="password.editing = !password.editing">Edit</button>
+                            <div class="edit" ng-show="editing">
+                                <input class="form-control" ng-show="editing" ng-model="user.password" ng-hide="!password.editing" ng-show="password.editing">
+                            </div>
+                            <div class="view" ng-hide="editing">
+                                <h4>{{ user.password }}</h4>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -57,46 +60,52 @@
             <h2>User Data</h2>
 
             <form novalidate>
+
+                <button class="btn btn-lrg btn-danger" ng-hide="dataEditing" ng-click="dataEditing = true">Edit</button>
+                <button class="btn btn-lrg btn-danger" ng-show="dataEditing" ng-click="saveUserData(userData); dataEditing = !dataEditing">Save</button>
+                
                 <div class="form-group">
                     <label for="age">age</label>
-                    <br>
-                    <input ng-model="user.age" ng-hide="!age.editing" ng-show="age.editing">
-                    <button ng-click="age.editing = !age.editing">done</button>
-                    <br>
-                    <h4>{{ user.age }}</h4>
-                    <button ng-click="age.editing = !age.editing">Edit</button>
+                    <div class="edit" ng-show="dataEditing">
+                        <input ng-model="user.age" ng-show="dataEditing">
+                    </div>
+                    <div class="view" ng-hide="dataEditing">
+                        <h4>{{ user.age }}</h4>
+
+                    </div>
 
                     <label for="height">height</label>
-                    <br>
-                    <input ng-model="user.height" ng-hide="!height.editing" ng-show="height.editing">
-                    <button ng-click="height.editing = !height.editing">done</button>
-                    <br>
-                    <h4>{{ user.height }}</h4>
-                    <button ng-click="height.editing = !height.editing">Edit</button>
+                    <div class="edit" ng-show="dataEditing">
+                        <input ng-model="user.height" ng-show="dataEditing">
+                    </div>
+                    <div class="view" ng-hide="dataEditing">
+                        <h4>{{ user.height }}</h4>
+                    </div>
 
                     <label for="weight">weight</label>
-                    <br>
-                    <input ng-model="user.weight" ng-hide="!weight.editing" ng-show="weight.editing">
-                    <button ng-click="weight.editing = !weight.editing">done</button>
-                    <br>
-                    <h4>{{ user.weight }}</h4>
-                    <button ng-click="weight.editing = !weight.editing">Edit</button>
+                    <div class="edit" ng-show="dataEditing">
+                        <input ng-model="user.weight" ng-show="dataEditing">
+                    </div>
+                    <div class="view" ng-hide="dataEditing">
+                        <h4>{{ user.weight }}</h4>
+                    </div>
 
                     <label for="gender">gender</label>
-                    <br>
-                    <input ng-model="user.gender" ng-hide="!gender.editing" ng-show="gender.editing">
-                    <button ng-click="gender.editing = !gender.editing">done</button>
-                    <br>
-                    <h4>{{ user.gender }}</h4>
-                    <button ng-click="gender.editing = !gender.editing">Edit</button>
+                    <div class="edit" ng-show="dataEditing">
+                        <input ng-model="user.gender" ng-show="dataEditing">
+                    </div>
+                    <div class="view" ng-hide="dataEditing">
+                        <h4>{{ user.gender }}</h4>
+                    </div>
 
                     <label for="goal">goal</label>
-                    <br>
-                    <input ng-model="user.goal" ng-hide="!goal.editing" ng-show="goal.editing">
-                    <button ng-click="goal.editing = !goal.editing">done</button>
-                    <br>
-                    <h4>{{ user.goal }}</h4>
-                    <button ng-click="goal.editing = !goal.editing">Edit</button>
+                    <div class="edit" ng-show="dataEditing">
+                        <input ng-model="user.goal" ng-hide="dataEditing">
+                    </div>
+                    <div class="view" ng-hide="dataEditing">
+                        <h4>{{ user.goal }}</h4>
+                    </div>
+
                 </div>
             </form>
 
