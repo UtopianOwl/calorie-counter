@@ -1,12 +1,12 @@
 var express = require("express");
-var mealRouter = express.Router();
-var Meal = require("../models/meal");
+var foodRouter = express.Router();
+var Food = require("../models/food");
 
-mealRouter.route("/")
+foodRouter.route("/")
     .get(function (req, res) {
-        Loan.find({user: req.user._id}, function (err, meals) {
+        Loan.find({user: req.user._id}, function (err, foods) {
             if (err) res.status(500).send(err);
-            else res.send(meals);
+            else res.send(foods);
         });
     })
     .post(function (req, res) {
@@ -18,24 +18,24 @@ mealRouter.route("/")
         });
 });
 
-mealRouter.route("/:mealId")
+foodRouter.route("/:foodId")
     .get(function (req, res) {
-        Loan.findOne({_id: req.params.mealId, user: req.user._id}, function (err, meal) {
+        Loan.findOne({_id: req.params.foodId, user: req.user._id}, function (err, food) {
             if (err) res.status(500).send(err);
-            else res.send(meal);
+            else res.send(food);
         });
     })
     .put(function (req, res) {
-        Loan.findOneAndUpdate({_id: req.params.mealId, user: req.user._id}, req.body, {new:true}, function(err, meal) {
+        Loan.findOneAndUpdate({_id: req.params.foodId, user: req.user._id}, req.body, {new:true}, function(err, food) {
             if (err) res.send(500).send(err);
-            else res.send(meal);
+            else res.send(food);
         });
     })
     .delete(function (req, res) {
-        Loan.findOneAndRemove({_id: req.params.mealId, user: req.user._id}, function(err, meal) {
+        Loan.findOneAndRemove({_id: req.params.foodId, user: req.user._id}, function(err, food) {
             if (err) res.status(500).send(err);
-            else res.send(meal);
+            else res.send(food);
         });
     });
 
-module.exports = mealRouter;
+module.exports = foodRouter;

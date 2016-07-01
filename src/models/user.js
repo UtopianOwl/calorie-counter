@@ -24,3 +24,5 @@ var userSchema = new Schema ({
     gender: String,
     goal: String
 });
+
+module.exports = mongoose.model("User", userSchema);
