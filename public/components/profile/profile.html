@@ -8,41 +8,43 @@
                     <div class="row">
                         <div class="col-md-6 control-group">
                             <label for="name">name</label>
-                            <br>
-                            <input class="form-control" ng-model="user.name" ng-hide="!name.editing" ng-show="name.editing">
-                            <button ng-click="name.editing = !name.editing">done</button>
-                            <br>
-                            <h4>{{ user.name }}</h4>
-                            <button ng-click="!name.editing = name.editing">Edit</button>
+                            <div class="edit" ng-show="name.editing">
+                                <input class="form-control" ng-model="user.name">
+                                <button ng-click="editField()">done</button>
+                            </div>
+                            <div class="view" ng-hide="name.editing">
+                                <h4>{{ user.name }}</h4>
+                                <button ng-click="name.editing = !name.editing">Edit</button>
+                            </div>
                         </div>
                         <div class="col-md-6 control-group">
                             <label for="user">user</label>
-                            <br>
+                            div.edit
                             <input class="form-control" ng-model="user.user" ng-hide="!user.editing" ng-show="user.editing">
                             <button ng-click="user.editing = !user.editing">done</button>
-                            <br>
+                            div.view
                             <h4>{{ user.user }}</h4>
-                            <button ng-click="!user.editing = user.editing">Edit</button>
+                            <button ng-click="user.editing = !user.editing">Edit</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 control-group">
                             <label for="email">email</label>
-                            <br>
+                            div.edit
                             <input class="form-control" ng-model="user.email" ng-hide="!email.editing" ng-show="email.editing">
                             <button ng-click="email.editing = !email.editing">done</button>
-                            <br>
+                            div.view
                             <h4>{{ user.email }}</h4>
-                            <button ng-click="!email.editing = email.editing">Edit</button>
+                            <button ng-click="email.editing = !email.editing">Edit</button>
                         </div>
                         <div class="col-md-6 control-group">
                             <label for="password">password</label>
-                            <br>
+                            div.edit
                             <input class="form-control" ng-model="user.password" ng-hide="!password.editing" ng-show="password.editing">
                             <button ng-click="password.editing = !password.editing">done</button>
-                            <br>
+                            div.view
                             <h4>{{ user.password }}</h4>
-                            <button ng-click="!password.editing = password.editing">Edit</button>
+                            <button ng-click="password.editing = !password.editing">Edit</button>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,7 @@
                     <button ng-click="age.editing = !age.editing">done</button>
                     <br>
                     <h4>{{ user.age }}</h4>
-                    <button ng-click="!age.editing = age.editing">Edit</button>
+                    <button ng-click="age.editing = !age.editing">Edit</button>
 
                     <label for="height">height</label>
                     <br>
@@ -70,7 +72,7 @@
                     <button ng-click="height.editing = !height.editing">done</button>
                     <br>
                     <h4>{{ user.height }}</h4>
-                    <button ng-click="!height.editing = height.editing">Edit</button>
+                    <button ng-click="height.editing = !height.editing">Edit</button>
 
                     <label for="weight">weight</label>
                     <br>
@@ -78,7 +80,7 @@
                     <button ng-click="weight.editing = !weight.editing">done</button>
                     <br>
                     <h4>{{ user.weight }}</h4>
-                    <button ng-click="!weight.editing = weight.editing">Edit</button>
+                    <button ng-click="weight.editing = !weight.editing">Edit</button>
 
                     <label for="gender">gender</label>
                     <br>
@@ -86,7 +88,7 @@
                     <button ng-click="gender.editing = !gender.editing">done</button>
                     <br>
                     <h4>{{ user.gender }}</h4>
-                    <button ng-click="!gender.editing = gender.editing">Edit</button>
+                    <button ng-click="gender.editing = !gender.editing">Edit</button>
 
                     <label for="goal">goal</label>
                     <br>
@@ -94,7 +96,7 @@
                     <button ng-click="goal.editing = !goal.editing">done</button>
                     <br>
                     <h4>{{ user.goal }}</h4>
-                    <button ng-click="!goal.editing = goal.editing">Edit</button>
+                    <button ng-click="goal.editing = !goal.editing">Edit</button>
                 </div>
             </form>
 
