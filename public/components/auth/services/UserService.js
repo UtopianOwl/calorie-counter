@@ -26,6 +26,6 @@ app.service("UserService", ["$http", "$location", "TokenService", function ($htt
         });
     }
     this.isAuthenticated = function () {
-        retun TokenService.getToken();
+        return TokenService.getToken();
     }
 }]);

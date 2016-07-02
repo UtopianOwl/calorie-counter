@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body ng-app="CalorieApp">
     <!-- NAV BAR HERE   -->
     <navbar></navbar>
 
@@ -29,6 +29,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/cipher-core-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/hmac.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
 
@@ -38,15 +40,19 @@
 <script src="components/profile/profile.js"></script>
 <script src="components/track/track.js"></script>
 <script src="components/welcome/welcome.js"></script>
+<script src="components/services/fatService.js"></script>
+<script src="components/services/foodService.js"></script>
+<script src="components/navbar/navbar.js"></script>
 
 <!--navbar-->
 
 
 <!--auth scripts-->
- <script src="components/auth/auth.js"></script>
-    <script src="components/auth/signup/signup.js"></script>
-    <script src="components/auth/login/login.js"></script>
-    <script src="components/auth/logout/logout.js"></script>
+<script src="components/auth/auth.js"></script>
+<script src="components/auth/signup/signup.js"></script>
+<script src="components/auth/login/login.js"></script>
+<script src="components/auth/logout/logout.js"></script>
+<script src="components/auth/services/TokenService.js"></script>
+<script src="components/auth/services/UserService.js"></script>
 
 </html>
-
