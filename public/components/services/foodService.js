@@ -1,46 +1,46 @@
 var app = angular.module("CalorieApp");
 
-app.service("MealService", ["$http", function($http) {
+app.service("FoodService", ["$http", function($http) {
     var self = this; 
-    this.mealList = [];
-    this.meal = {}; 
+    this.foodList = [];
+    this.food = {}; 
     var baseUrl = "reaches out to api"
     
-    this.getMeals = function() {
+    this.getFoods = function() {
         return $http.get(baseUrl).then(function(response) {
-            self.mealList = response.data; 
+            self.foodList = response.data; 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText); 
         });
     } 
     
-    this.getMeal = function(meal) {
-        return $http.get(baseUrl + meal._id).then(function(response) {
-            self.meal = response.data; 
+    this.getFood = function(food) {
+        return $http.get(baseUrl + food._id).then(function(response) {
+            self.food = response.data; 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     }
     
-    this.addMeal = function(meal) {
-        return $http.post(baseUrl, meal  ).then(function(response) {
-            self.mealList.push(response.data); 
+    this.addFood = function(food) {
+        return $http.post(baseUrl, food  ).then(function(response) {
+            self.foodList.push(response.data); 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     }
     
-    this.deleteMeal = function(index, meal) {
-        return $http.delete(baseUrl + meal._id).then(function(response) {
-            self.mealList.splice(index, 1); 
+    this.deleteFood = function(index, food) {
+        return $http.delete(baseUrl + food._id).then(function(response) {
+            self.foodList.splice(index, 1); 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText);
         });
     }
     
-    this.updateMeal = function(index, meal) {
-        return $http.put(baseUrl + meal._id, meal).then(function(response) {
-            self.mealList[index] = response.data; 
+    this.updateFood = function(index, food) {
+        return $http.put(baseUrl + food._id, food).then(function(response) {
+            self.foodList[index] = response.data; 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText);
         });
