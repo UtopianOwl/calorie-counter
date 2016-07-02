@@ -1,4 +1,92 @@
-<h1>Add Meal</h1>
-<div class="input-group">
-    
+<div class="add container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="input-group center-block">
+                <input type="text" name="search" id="search" ng-model="searchTerm" placeholder="Search foods...">
+                <button class="btn-btn-default input-group-addon" ng-click="fatService.fatSearch(searchTerm)"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 well">
+            <div ng-switch="addView">
+                <div class="results" ng-switch-when="search">
+                    <div class="list-group">
+                        <a ng-click="fatService.getFood(food.food.food_id); addView = 'save'" class="list-group-item" ng-repeat="food in fatService.searchResults">
+                            <span class="foodName">{{ food.food.food_name }}</span>
+                            <span class="foodDesc">{{ food.food.food_description }}</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="nutrition" ng-switch-when="save">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="nutrition">{{ fatService.currentFood.food_name }}</h2>
+                            <h3 class="nutrition">Nutrition Facts</h3>
+                            <p class="serving">
+                                <span class="label">Serving Size: </span>
+                                <span class="number">{{ fatService.currentFood.number_of_units }} </span>
+                                <span class="unit">{{ fatService.currentFood.serving_description }} </span>
+                                <span>({{ fatService.currentFood.metric_serving_amount }}{{ fatService.currentFood.metric_serving_unit }})</span>
+                            </p>
+                            <p class="calories">
+                                <span class="label">Calories</span>
+                                <span class="number">{{ fatService.currentFood.calories }}</span>
+                            </p>
+                            <p class="fat">
+                                <span class="label">Total Fat</span>
+                                <span class="number">{{ fatService.currentUser.fat }}</span>
+                                <span class="unit">g</span>
+                            </p>
+                            <p class="cholesterol">
+                                <span class="label">Cholesterol</span>
+                                <span class="number">{{ fatService.currentUser.cholesterol }}</span>
+                                <span class="unit">mg</span>
+                            </p>
+                            <p class="sodium">
+                                <span class="label">Sodium</span>
+                                <span class="number">{{ fatService.currentUser.sodium }}</span>
+                                <span class="unit">mg</span>
+                            </p>
+                            <p class="carbs">
+                                <span class="label">Total Carbohydrate</span>
+                                <span class="number">{{ fatService.currentUser.carbohydrate }}</span>
+                                <span class="unit">g</span>
+                            </p>
+                            <p class="protein">
+                                <span class="label">Protein</span>
+                                <span class="number">{{ fatService.currentUser.protein }}</span>
+                                <span class="unit">g</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="imput-group">
+                               <label for="servings">Number of Servings:</label>
+                                <select name="servings" ng-model="fatService.currentFood.servings">
+                                    <option value="1">1 Serving</option>
+                                    <option value="1.5">1.5 Servings</option>
+                                    <option value="2">2 Servings</option>
+                                    <option value="2.5">2.5 Servings</option>
+                                    <option value="1">3 Servings</option>
+                                    <option value="1.5">3.5 Servings</option>
+                                    <option value="2">4 Servings</option>
+                                    <option value="2.5">4.5 Servings</option>
+                                    <option value="1">5 Servings</option>
+                                    <option value="1.5">5.5 Servings</option>
+                                    <option value="2">6 Servings</option>
+                                    <option value="2.5">6.5 Servings</option>
+                                    <option value="1">7 Servings</option>
+                                    <option value="1.5">7.5 Servings</option>
+                                    <option value="2">8 Servings</option>
+                                </select>
+                                <button class="btn btn-default" ng-click="mealService.addMeal(fatService.currentFood); addView = 'search'">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

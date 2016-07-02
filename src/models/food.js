@@ -14,6 +14,22 @@ var foodSchema = new Schema({
         type: String,
         required: true
     },
+    calories: {
+        type: Number,
+        required: true
+    },
+    fat: {
+        type: Number,
+        required: true
+    },
+    protein: {
+        type: Number,
+        required: true
+    },
+    carbohydrate: {
+        type: Number,
+        required: true
+    },
     brand_name: String,
     serving_id: {
         type: String,
