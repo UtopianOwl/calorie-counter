@@ -2,7 +2,8 @@ var app = angular.module("CalorieApp");
 
 app.service("fatService", ["$http", function ($http) {
     var self = this;
-    this.searchResults = {};
+    this.searchResults = [];
+    this.currentFood = {};
     var n = 0;
     var nonce = Math.random().toString(36).replace(/[\W]/g, '');
     var requestUrl = "http://platform.fatsecret.com/rest/server.api";
@@ -57,12 +58,12 @@ app.service("fatService", ["$http", function ($http) {
 
         params.oauth_signature = percentEncode(CryptoJs.enc.Base64.stringify(sigBaseString));
 
-        $http({
+        return $http({
             method: "GET",
             url: url,
             params: params
         }).then(function (response) {
-            self.searchResults = response.data;
+            return response.data;
         });
     };
 
@@ -74,7 +75,9 @@ app.service("fatService", ["$http", function ($http) {
         sigBase.search_expression = searchTerm;
         n++;
 
-        fatsecretGet(sigBase, requestUrl);
+        fatsecretGet(sigBase, requestUrl).then(function(data) {
+            self.searchResults = data.foods;
+        })
     };
 
     this.getFood = function (id) {
@@ -83,6 +86,8 @@ app.service("fatService", ["$http", function ($http) {
         sigBase.food_id = id;
         sigBase.method = "food.get";
 
-        fatsecretGet(sigBase, requestUrl);
+        fatsecretGet(sigBase, requestUrl).then(function(data) {
+            self.currentFood = data.food;
+        })
     };
 }]);
