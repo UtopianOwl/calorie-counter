@@ -56,6 +56,9 @@ app.service("FatService", ["$http", function ($http) {
         
         console.log(concatParams);
         
+        var test = percentEncode(concatParams);
+        console.log(test);
+        
         var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
         
         console.log(sigBaseString);
