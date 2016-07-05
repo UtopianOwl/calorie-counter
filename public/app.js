@@ -1,4 +1,4 @@
-var app = angular.module("CalorieApp", ["ngRoute"]);
+var app = angular.module("CalorieApp", ["ngRoute", "CalorieApp.Auth"]);
 
 app.config(function ($routeProvider) {
     $routeProvider

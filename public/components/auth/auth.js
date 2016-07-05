@@ -24,7 +24,7 @@ app.config(['$httpProvider', '$routeProvider', function ($httpPovider, $routePro
         });
 }]);
 
-app.factory("AuthInterceptor", ["$location". "$q", "TokenService", function ($location, $q, TokenService) {
+app.factory("AuthInterceptor", ["$location", "$q", "TokenService", function ($location, $q, TokenService) {
     return {
         request: function (config) {
             var token = TokenService.getToken();
@@ -46,8 +46,9 @@ app.factory("AuthInterceptor", ["$location". "$q", "TokenService", function ($lo
 
 var notLoggedIn = function($q, $location, UserService) {
     var defer = $q.defer();
-    if (!UserService.isAuthticated()) defer.resolve(true);
-    else {
+    if (!UserService.isAuthenticated()) {
+        defer.resolve(true);
+    } else {
         defer.reject("logged in")
         $location.path("/home")
     }

@@ -1,6 +1,6 @@
 var app = angular.module("CalorieApp");
 
-app.service("fatService", ["$http", function ($http) {
+app.service("FatService", ["$http", function ($http) {
     var self = this;
     this.searchResults = [];
     this.currentFood = {};
@@ -20,9 +20,9 @@ app.service("fatService", ["$http", function ($http) {
 
         for (var i = 0; i < keys.length; i++) {
             if (i = 0) {
-                concatString += key[i] + "=" + sigBase[key[i]];
+                concatString += keys[i] + "=" + sigBase[keys[i]];
             } else {
-                concatString += "&" + key[i] + "=" + sigBase[key[i]];
+                concatString += "&" + keys[i] + "=" + sigBase[keys[i]];
             }
         }
 
@@ -63,6 +63,7 @@ app.service("fatService", ["$http", function ($http) {
             url: url,
             params: params
         }).then(function (response) {
+            console.log(response);
             return response.data;
         });
     };
@@ -76,6 +77,7 @@ app.service("fatService", ["$http", function ($http) {
         n++;
 
         fatsecretGet(sigBase, requestUrl).then(function(data) {
+            console.log(data);
             self.searchResults = data.foods;
         })
     };
