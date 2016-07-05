@@ -2,6 +2,7 @@ var app = angular.module("CalorieApp.Auth");
 
 app.controller("loginCtrl", ["$scope", "UserService", "$location", function ($scope, UserService, $location) {
     $scope.login = function(user) {
+        console.log(user);
         UserService.login(user).then(function (response) {
             $location.path("/home");
         }, function (response) {
