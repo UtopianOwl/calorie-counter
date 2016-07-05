@@ -28,24 +28,24 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     var percentEncode = function (string) {
-        string.replace(/[!]/g, "%21");
-        string.replace(/[#]/g, "%23");
-        string.replace(/[\$]/g, "%24");
-        string.replace(/[&]/g, "%26");
-        string.replace(/[']/g, "%27");
-        string.replace(/[\(]/g, "%28");
-        string.replace(/[\)]/g, "%29");
-        string.replace(/[\*]/g, "%2A");
-        string.replace(/[\+]/g, "%2B");
-        string.replace(/[,]/g, "%2C");
-        string.replace(/[\/]/g, "%2F");
-        string.replace(/[:]/g, "%3A");
-        string.replace(/[;]/g, "%3B");
-        string.replace(/[=]/g, "%3D");
-        string.replace(/[\?]/g, "%3F");
-        string.replace(/[@]/g, "%40");
-        string.replace(/[\[]/g, "%5B");
-        string.replace(/[]]/g, "%5D");
+        string = string.replace(/!/g, "%21");
+        string = string.replace(/#/g, "%23");
+        string = string.replace(/\$/g, "%24");
+        string = string.replace(/&/g, "%26");
+        string = string.replace(/'/g, "%27");
+        string = string.replace(/\(/g, "%28");
+        string = string.replace(/\)/g, "%29");
+        string = string.replace(/\*/g, "%2A");
+        string = string.replace(/\+/g, "%2B");
+        string = string.replace(/,/g, "%2C");
+        string = string.replace(/\//g, "%2F");
+        string = string.replace(/:/g, "%3A");
+        string = string.replace(/;/g, "%3B");
+        string = string.replace(/=/g, "%3D");
+        string = string.replace(/\?/g, "%3F");
+        string = string.replace(/@/g, "%40");
+        string = string.replace(/\[/g, "%5B");
+        string = string.replace(/]/g, "%5D");
         return string;
     };
 
