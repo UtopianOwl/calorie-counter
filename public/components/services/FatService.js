@@ -28,34 +28,12 @@ app.service("FatService", ["$http", function ($http) {
         return concatString;
     };
 
-    var percentEncode = function (string) {
-        string = string.replace(/!/g, "%21");
-        string = string.replace(/#/g, "%23");
-        string = string.replace(/\$/g, "%24");
-        string = string.replace(/&/g, "%26");
-        string = string.replace(/'/g, "%27");
-        string = string.replace(/\(/g, "%28");
-        string = string.replace(/\)/g, "%29");
-        string = string.replace(/\*/g, "%2A");
-        string = string.replace(/\+/g, "%2B");
-        string = string.replace(/,/g, "%2C");
-        string = string.replace(/\//g, "%2F");
-        string = string.replace(/:/g, "%3A");
-        string = string.replace(/;/g, "%3B");
-        string = string.replace(/=/g, "%3D");
-        string = string.replace(/\?/g, "%3F");
-        string = string.replace(/@/g, "%40");
-        string = string.replace(/\[/g, "%5B");
-        string = string.replace(/]/g, "%5D");
-        return string;
-    };
-
     var fatsecretGet = function (params) {
         var httpMethod = "GET";
         
         var concatParams = concat(params);
         
-        var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
+        var sigBaseString = httpMethod + "&" + encodeURIComponent(requestUrl) + "&" + encodeURIComponent(concatParams);
         
         var hash = CryptoJS.HmacSHA1(sigBaseString, sharedSecret);
         
