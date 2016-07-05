@@ -54,9 +54,10 @@ app.service("FatService", ["$http", function ($http) {
         
         var concatParams = concat(params);
         
-        console.log(concatParams);
-        
         var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
+        
+        var hash = CryptoJS.HmacSHA1(sigBaseString, sigBase.oauth_consumer_key + "&");
+        
         var wordArray = CryptoJS.enc.Utf8.parse(sigBaseString);
         var base64 = CryptoJS.enc.Base64.stringify(wordArray);
         
@@ -75,7 +76,8 @@ app.service("FatService", ["$http", function ($http) {
     this.fatSearch = function (searchTerm) {
         sigBase.max_results = 50;
         sigBase.method = "foods.search";
-        sigBase.oauth_timestamp = new Date;
+        sigBase.oauth_timestamp = new Date().getTime();
+        console.log(sigBase.oauth_timestamp);
         sigBase.oauth_nonce = nonce + n;
         sigBase.search_expression = searchTerm;
         n++;
@@ -86,7 +88,7 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     this.getFood = function (id) {
-        sigBase.oauth_timestamp = new Date;
+        sigBase.oauth_timestamp = new Date().getTime();
         sigBase.oauth_nonce = nonce + n;
         sigBase.food_id = id;
         sigBase.method = "food.get";
