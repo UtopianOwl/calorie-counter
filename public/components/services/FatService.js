@@ -59,7 +59,7 @@ app.service("FatService", ["$http", function ($http) {
     this.fatSearch = function (searchTerm) {
         sigBase.max_results = 50;
         sigBase.method = "foods.search";
-        sigBase.oauth_timestamp = date.getTime() / 1000;
+        sigBase.oauth_timestamp = Math.floor(date.getTime() / 1000);
         sigBase.oauth_nonce = nonce + n;
         sigBase.search_expression = searchTerm;
         n++;
@@ -70,7 +70,7 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     this.getFood = function (id) {
-        sigBase.oauth_timestamp = date.getTime() / 1000;
+        sigBase.oauth_timestamp = Math.floor(date.getTime() / 1000);
         sigBase.oauth_nonce = nonce + n;
         sigBase.food_id = id;
         sigBase.method = "food.get";
