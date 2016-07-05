@@ -49,7 +49,7 @@ app.service("FatService", ["$http", function ($http) {
         return $http({
             method: httpMethod,
             url: requestUrl,
-            params: params
+            data: params
         }).then(function (response) {
             console.log(response);
             return response.data;
