@@ -60,7 +60,9 @@ app.service("FatService", ["$http", function ($http) {
         sigBase.max_results = 50;
         sigBase.method = "foods.search";
         sigBase.oauth_timestamp = Math.floor(date.getTime() / 1000);
+        console.log(sigBase.oauth_timestamp);
         sigBase.oauth_nonce = nonce + n;
+        console.log(sigBase.oauth_nonce);
         sigBase.search_expression = searchTerm;
         n++;
         fatsecretGet(sigBase).then(function(data) {
