@@ -67,7 +67,7 @@ app.service("FatService", ["$http", function ($http) {
         
         console.log(hash);
         
-        var wordArray = CryptoJS.enc.Utf8.parse(sigBaseString);
+        var wordArray = CryptoJS.enc.Utf8.parse(hash.words);
         console.log(wordArray);
         
         var base64 = CryptoJS.enc.Base64.stringify(wordArray);
