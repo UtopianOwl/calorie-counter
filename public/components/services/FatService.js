@@ -71,7 +71,7 @@ app.service("FatService", ["$http", function ($http) {
         
         console.log(base64);
         
-        params.oauth_signature = percentEncode(base64);
+        params.oauth_signature = base64;
         
         console.log(params.oauth_signature);
         
