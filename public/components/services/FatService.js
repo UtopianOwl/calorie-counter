@@ -10,7 +10,7 @@ app.service("FatService", ["$http", function ($http) {
     var requestUrl = "http://platform.fatsecret.com/rest/server.api";
     var sharedSecret = "c779145a3cc84bbc8820e336def62a37&"
     var sigBase = {
-        format: "json",
+//        format: "json",
         oauth_consumer_key: "40a95beb5d134a4aa81ec584486a23d9",
         oauth_signature_method: "HMAC-SHA1",
         oauth_version: 1.0,
@@ -49,7 +49,7 @@ app.service("FatService", ["$http", function ($http) {
         return $http({
             method: httpMethod,
             url: requestUrl,
-            data: params
+            params: params
         }).then(function (response) {
             console.log(response);
             return response.data;
