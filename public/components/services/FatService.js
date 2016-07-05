@@ -7,7 +7,7 @@ app.service("FatService", ["$http", function ($http) {
     var n = 0;
     var nonce = Math.random().toString(36).replace(/[\W]/g, '');
     var requestUrl = "http://platform.fatsecret.com/rest/server.api";
-    var sharedSecret = "c779145a3cc84bbc8820e336def62a37"
+    var sharedSecret = "c779145a3cc84bbc8820e336def62a37&"
     var sigBase = {
         format: "json",
         oauth_consumer_key: "40a95beb5d134a4aa81ec584486a23d9",
@@ -55,22 +55,13 @@ app.service("FatService", ["$http", function ($http) {
         
         var concatParams = concat(params);
         
-        console.log(concatParams);
-        
-        var test = percentEncode(concatParams);
-        console.log(test);
-        
         var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
         
-        console.log(sigBaseString);
-        
-        var hash = CryptoJS.HmacSHA1(sigBaseString, sharedSecret + "&");
+        var hash = CryptoJS.HmacSHA1(sigBaseString, sharedSecret);
         
         console.log(hash);
         
         var base64 = CryptoJS.enc.Base64.stringify(hash);
-        
-        console.log(base64);
         
         params.oauth_signature = base64;
         
