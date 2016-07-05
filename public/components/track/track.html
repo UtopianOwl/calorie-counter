@@ -1,0 +1,59 @@
+<div class="container track">
+
+    <!--  /////////SEARCH BAR/////////  -->
+    <!--
+    <div class="filter">
+        <div class="form-group has-feedback search-items">
+            <input type="text" class="form-control search-bar" placeholder="Search">
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </div>
+
+    </div>
+-->
+
+    <!--  /////////GOALS/////////  -->
+
+    <div class="goals">
+        <h4>Goals</h4>
+        <!--    what do we want "goals" section to look like?    -->
+    </div>
+
+    <!--  /////////NG SWITCHES/////////  -->
+    <div class="switches">
+        <div class="content-box" ng-switch on="tabName">
+            <!--    nav-tabs        -->
+<!--     ng-model="viewerDate"       -->
+            <ul class="tabmenu">
+                <!--               http get request on the food schema? with ng-click-->
+                <li class="list-tabs" ng-class="{'active': tabName=='day'}" ng-click="tabName='day'; trackFoodDay(date)">Day</li>
+                <li class="list-tabs" ng-class="{'active': tabName=='month'}" ng-click="tabName='month'">Month</li>
+                <!--                <li class="list-tabs" ng-class="{'active': tabName=='year'}" ng-click="tabName='year'">Year</li>-->
+            </ul>
+
+            <!--          TODAY          -->
+            <div ng-switch-default>
+                <h1>Today</h1>
+                <div class="todaysFood" ng-repeat="food in foodService.foodlist">
+
+                </div>
+
+            </div>
+            
+            
+            <!--          MONTH          -->
+            <div ng-switch-when="month">
+                <h1>Month Tab</h1>
+                <!--                take everything from the most recent month and display it-->
+            </div>
+            <!--          YEAR(?)          -->
+            <!--
+            <div ng-switch-when="year">
+                <h1>Year Tab</h1>
+            </div>
+-->
+
+        </div>
+    </div>
+
+    <!--    end of page-->
+</div>

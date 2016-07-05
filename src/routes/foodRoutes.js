@@ -4,7 +4,7 @@ var Food = require("../models/food");
 
 foodRouter.route("/")
     .get(function (req, res) {
-        Loan.find({user: req.user._id}, function (err, foods) {
+        Loan.find({user: req.user._id, day: req.body.day, month: req.body.month, year: req.body.year}, function (err, foods) {
             if (err) res.status(500).send(err);
             else res.send(foods);
         });
