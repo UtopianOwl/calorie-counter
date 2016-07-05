@@ -5,7 +5,8 @@ app.service("FatService", ["$http", function ($http) {
     this.searchResults = [];
     this.currentFood = {};
     var n = 0;
-    var nonce = Math.random().toString(36).replace(/[\W]/g, '');
+    var nonce = Math.random().toString(36).replace(/[^a-z]/, '').substr(2);
+    var date = new Date;
     var requestUrl = "http://platform.fatsecret.com/rest/server.api";
     var sharedSecret = "c779145a3cc84bbc8820e336def62a37&"
     var sigBase = {
@@ -58,8 +59,7 @@ app.service("FatService", ["$http", function ($http) {
     this.fatSearch = function (searchTerm) {
         sigBase.max_results = 50;
         sigBase.method = "foods.search";
-        sigBase.oauth_timestamp = new Date().getTime();
-        console.log(sigBase.oauth_timestamp);
+        sigBase.oauth_timestamp = date.getTime() / 1000;
         sigBase.oauth_nonce = nonce + n;
         sigBase.search_expression = searchTerm;
         n++;
@@ -70,7 +70,7 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     this.getFood = function (id) {
-        sigBase.oauth_timestamp = new Date().getTime();
+        sigBase.oauth_timestamp = date.getTime() / 1000;
         sigBase.oauth_nonce = nonce + n;
         sigBase.food_id = id;
         sigBase.method = "food.get";
