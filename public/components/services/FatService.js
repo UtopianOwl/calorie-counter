@@ -54,14 +54,24 @@ app.service("FatService", ["$http", function ($http) {
         
         var concatParams = concat(params);
         
+        console.log(concatParams);
+        
         var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
         
+        console.log(sigBaseString);
+        
         var hash = CryptoJS.HmacSHA1(sigBaseString, sigBase.oauth_consumer_key + "&");
+        
+        console.log(hash);
         
         var wordArray = CryptoJS.enc.Utf8.parse(sigBaseString);
         var base64 = CryptoJS.enc.Base64.stringify(wordArray);
         
+        console.log(base64);
+        
         params.oauth_signature = percentEncode(base64);
+        
+        console.log(params.oauth_signature);
         
         return $http({
             method: httpMethod,
@@ -92,6 +102,7 @@ app.service("FatService", ["$http", function ($http) {
         sigBase.oauth_nonce = nonce + n;
         sigBase.food_id = id;
         sigBase.method = "food.get";
+        n++;
 
         fatsecretGet(sigBase).then(function(data) {
             self.currentFood = data.food;
