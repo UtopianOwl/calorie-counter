@@ -22,7 +22,7 @@
     <div class="switches">
         <div class="content-box" ng-switch on="tabName">
             <!--    nav-tabs        -->
-<!--     ng-model="viewerDate"       -->
+            <!--     ng-model="viewerDate"       -->
             <ul class="tabmenu">
                 <!--               http get request on the food schema? with ng-click-->
                 <li class="list-tabs" ng-class="{'active': tabName=='day'}" ng-click="tabName='day'; trackFoodDay(date)">Day</li>
@@ -32,14 +32,49 @@
 
             <!--          TODAY          -->
             <div ng-switch-default>
-                <h1>Today</h1>
-                <div class="todaysFood" ng-repeat="food in foodService.foodlist">
+                <!--            <div ng-switch-when="day">-->
+                <h1>Today/Day</h1>
+                <!--*********calendar from datepicker popup************-->
+                <style>
+                    .full button span {
+                        background-color: limegreen;
+                        border-radius: 32px;
+                        color: black;
+                    }
+                    
+                    .partially button span {
+                        background-color: orange;
+                        border-radius: 32px;
+                        color: black;
+                    }
+                </style>
 
-                </div>
+<!--                <div ng-controller="DatepickerPopupDemoCtrl">-->
+                    <!--                    <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+
+                    <h4>Popup</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions"
+                                 ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--                    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>-->
+<!--                </div>-->
+
+                <!--***********END calendar**************-->
 
             </div>
-            
-            
+            <!--list of day's items-->
+            <!--            <div class="todaysFood" ng-repeat="food in foodService.foodlist">-->
+
+
             <!--          MONTH          -->
             <div ng-switch-when="month">
                 <h1>Month Tab</h1>
@@ -53,7 +88,31 @@
 -->
 
         </div>
+
+
+
+
+        <!--end of content box-->
     </div>
 
-    <!--    end of page-->
+
+
+
 </div>
+</div>
+
+<!--    end of page-->
+</div>
+
+
+
+
+
+
+<!-- Old-school vanilla just in case
+                <div class="inputDiv">
+                    <label for="date" class="text">Search Date:</label>
+                    <input type="date" name="date" id="userDate" ng-model="date">
+                   {{ date_expression | date : format : timezone}}
+                    <button class="btn btn-small" ng-click="checkDate()">boop!</button>
+-->

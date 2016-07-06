@@ -5,12 +5,12 @@ app.service("UserService", ["$http", "$location", "TokenService", function ($htt
     this.currentUser = {};
     
     this.signup = function(user) {
-        return $http.post("/auth/signup").then(function(response) {
+        return $http.post("/auth/signup", user).then(function(response) {
             return response;
         });
     };
     this.login = function(user) {
-        return $http.post("/auth/login").then(function(response) {
+        return $http.post("/auth/login", user).then(function(response) {
             TokenService.setToken(response.data.token);
             self.currentUser = response.data.user;
             return response;

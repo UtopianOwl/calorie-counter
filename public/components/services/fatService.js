@@ -15,17 +15,15 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     var concat = function (object) {
-        var keys = Object.keys(sigBase).sort();
+        var keys = Object.keys(object).sort();
         var concatString = "";
-
         for (var i = 0; i < keys.length; i++) {
-            if (i = 0) {
-                concatString += keys[i] + "=" + sigBase[keys[i]];
+            if (i === 0) {
+                concatString += keys[i] + "=" + object[keys[i]];
             } else {
-                concatString += "&" + keys[i] + "=" + sigBase[keys[i]];
+                concatString += "&" + keys[i] + "=" + object[keys[i]];
             }
         }
-
         return concatString;
     };
 
@@ -51,16 +49,22 @@ app.service("FatService", ["$http", function ($http) {
         return string;
     };
 
-    var fatsecretGet = function (params, url) {
+    var fatsecretGet = function (params) {
         var httpMethod = "GET";
-
-        var sigBaseString = httpMethod + "&" + percentEncode(url) + "&" + percentEncode(concat(params));
-
-        params.oauth_signature = percentEncode(CryptoJs.enc.Base64.stringify(sigBaseString));
-
+        
+        var concatParams = concat(params);
+        
+        console.log(concatParams);
+        
+        var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
+        var wordArray = CryptoJS.enc.Utf8.parse(sigBaseString);
+        var base64 = CryptoJS.enc.Base64.stringify(wordArray);
+        
+        params.oauth_signature = percentEncode(base64);
+        
         return $http({
-            method: "GET",
-            url: url,
+            method: httpMethod,
+            url: requestUrl,
             params: params
         }).then(function (response) {
             console.log(response);
@@ -75,8 +79,7 @@ app.service("FatService", ["$http", function ($http) {
         sigBase.oauth_nonce = nonce + n;
         sigBase.search_expression = searchTerm;
         n++;
-
-        fatsecretGet(sigBase, requestUrl).then(function(data) {
+        fatsecretGet(sigBase).then(function(data) {
             console.log(data);
             self.searchResults = data.foods;
         })
@@ -88,7 +91,7 @@ app.service("FatService", ["$http", function ($http) {
         sigBase.food_id = id;
         sigBase.method = "food.get";
 
-        fatsecretGet(sigBase, requestUrl).then(function(data) {
+        fatsecretGet(sigBase).then(function(data) {
             self.currentFood = data.food;
         })
     };

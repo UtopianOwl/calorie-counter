@@ -13,7 +13,7 @@ app.config(['$httpProvider', '$routeProvider', function ($httpPovider, $routePro
         })
         .when('/signup', {
             controller: 'signupCtrl',
-            templatUrl: 'components/auth/signup/signup.html',
+            templateUrl: 'components/auth/signup/signup.html',
             resolve: {
                 factory: notLoggedIn
             }

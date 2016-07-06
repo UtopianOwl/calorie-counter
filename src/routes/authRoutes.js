@@ -5,7 +5,16 @@ var jwt = require("jsonwebtoken");
 var config = require("../config");
 var User = require("../models/user");
 
+
+authRouter.get("/users", function (req, res) {
+    User.find({}, function(err, users) {
+        if (err) res.status(500).send(err);
+        else res.status(200).send(users);
+    });
+});
+
 authRouter.post("/login", function (req, res) {
+    console.log(req.body.username);
     User.findOne({username: req.body.username}, function (err, user) {
         if (err) res.status(500).send(err);
         else if (!user) res.status(401).send({
