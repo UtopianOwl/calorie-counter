@@ -1,9 +1,9 @@
-var app = angular.module("CalorieApp"); 
+var app = angular.module("CalorieApp");
 
-app.directive("navbar", ["UserService", function(UserService) {
+app.directive("navbar", ["UserService", function (UserService) {
     return {
-        templateUrl: "components/navbar/navbar.html", 
-        link: function(scope) {
+        templateUrl: "components/navbar/navbar.html",
+        link: function (scope) {
             scope.userService = UserService;
         }
     }
