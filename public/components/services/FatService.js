@@ -5,10 +5,12 @@ app.service("FatService", ["$http", function ($http) {
     this.searchResults = [];
     this.currentFood = {};
     var n = 0;
-    var nonce = Math.random().toString(36).replace(/[\W]/g, '');
+    var nonce = Math.random().toString(36).replace(/[^a-z]/, '').substr(2);
+    var date = new Date;
     var requestUrl = "http://platform.fatsecret.com/rest/server.api";
+    var sharedSecret = "c779145a3cc84bbc8820e336def62a37&"
     var sigBase = {
-        format: "json",
+//        format: "json",
         oauth_consumer_key: "40a95beb5d134a4aa81ec584486a23d9",
         oauth_signature_method: "HMAC-SHA1",
         oauth_version: 1.0,
@@ -27,40 +29,22 @@ app.service("FatService", ["$http", function ($http) {
         return concatString;
     };
 
-    var percentEncode = function (string) {
-        string.replace(/!/g, "%21");
-        string.replace(/#/g, "%23");
-        string.replace(/\$/g, "%24");
-        string.replace(/&/g, "%26");
-        string.replace(/'/g, "%27");
-        string.replace(/\(/g, "%28");
-        string.replace(/\)/g, "%29");
-        string.replace(/\*/g, "%2A");
-        string.replace(/\+/g, "%2B");
-        string.replace(/,/g, "%2C");
-        string.replace(/\//g, "%2F");
-        string.replace(/:/g, "%3A");
-        string.replace(/;/g, "%3B");
-        string.replace(/=/g, "%3D");
-        string.replace(/\?/g, "%3F");
-        string.replace(/@/g, "%40");
-        string.replace(/\[/g, "%5B");
-        string.replace(/]/g, "%5D");
-        return string;
-    };
-
     var fatsecretGet = function (params) {
         var httpMethod = "GET";
         
         var concatParams = concat(params);
         
-        console.log(concatParams);
+        var sigBaseString = httpMethod + "&" + encodeURIComponent(requestUrl) + "&" + encodeURIComponent(concatParams);
         
-        var sigBaseString = httpMethod + "&" + percentEncode(requestUrl) + "&" + percentEncode(concatParams);
-        var wordArray = CryptoJS.enc.Utf8.parse(sigBaseString);
-        var base64 = CryptoJS.enc.Base64.stringify(wordArray);
+        var hash = CryptoJS.HmacSHA1(sigBaseString, sharedSecret);
         
-        params.oauth_signature = percentEncode(base64);
+        console.log(hash);
+        
+        var base64 = CryptoJS.enc.Base64.stringify(hash);
+        
+        params.oauth_signature = base64;
+        
+        console.log(params.oauth_signature);
         
         return $http({
             method: httpMethod,
@@ -75,7 +59,7 @@ app.service("FatService", ["$http", function ($http) {
     this.fatSearch = function (searchTerm) {
         sigBase.max_results = 50;
         sigBase.method = "foods.search";
-        sigBase.oauth_timestamp = new Date;
+        sigBase.oauth_timestamp = Math.floor(date.getTime() / 1000);
         sigBase.oauth_nonce = nonce + n;
         sigBase.search_expression = searchTerm;
         n++;
@@ -86,10 +70,11 @@ app.service("FatService", ["$http", function ($http) {
     };
 
     this.getFood = function (id) {
-        sigBase.oauth_timestamp = new Date;
+        sigBase.oauth_timestamp = Math.floor(date.getTime() / 1000);
         sigBase.oauth_nonce = nonce + n;
         sigBase.food_id = id;
         sigBase.method = "food.get";
+        n++;
 
         fatsecretGet(sigBase).then(function(data) {
             self.currentFood = data.food;
