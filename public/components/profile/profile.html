@@ -5,8 +5,8 @@
             <h2>Account Details</h2>
             <form class="well" novalidate>
                 <div class="form-group">
-                    <a class="pull-right" ng-hide="editing" ng-click="editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                    
+                    <a class="pull-right" ng-hide="editing" title="Edit" ng-click="editing = true"><span class="glyphicon glyphicon-pencil"></span></a>
+
                     <div class="row">
                         <div class="col-md-6 control-group">
                             <label for="name">Name:</label>
@@ -46,17 +46,18 @@
     <!--    find a way to divide?-->
     <div class="row userData">
         <div class="col-md-6 col-md-offset-3">
-            <h2>User Data</h2>
+
 
             <form class="well" novalidate>
+                <h2 class="text-center">User Data</h2>
+                <a class="pull-right" ng-hide="dataEditing" title="Edit" ng-click="dataEditing = true"><span class="glyphicon glyphicon-pencil"></span></a>
 
-                <a class="pull-right" ng-hide="dataEditing" ng-click="dataEditing = true"><span class="glyphicon glyphicon-pencil"></span></a>
-                
                 <div class="form-group">
                     <label for="age">Age:</label>
                     <div class="edit" ng-show="dataEditing">
                         <input type="number" class="form-control" ng-model="UserService.currentUser.age" ng-show="dataEditing">
                     </div>
+                    <br>
                     <div class="view" ng-hide="dataEditing">
                         <h4>{{ UserService.currentUser.age }}</h4>
 
@@ -82,8 +83,10 @@
 
                     <label for="gender">Gender:</label>
                     <div class="edit input-group" ng-show="dataEditing">
-                        <label><input class= "radio-inline form-control" type="radio" ng-model="UserService.currentUser.gender" ng-show="dataEditing" value="Male">Male</label>
-                        <label><input class= "radio-inline form-control" type="radio" ng-model="UserService.currentUser.gender" ng-show="dataEditing" value="Female">Female</label>
+                        <label>
+                            <input class="radio-inline form-control" type="radio" ng-model="UserService.currentUser.gender" ng-show="dataEditing" value="Male">Male</label>
+                        <label>
+                            <input class="radio-inline form-control" type="radio" ng-model="UserService.currentUser.gender" ng-show="dataEditing" value="Female">Female</label>
                     </div>
                     <div class="view" ng-hide="dataEditing">
                         <h4>{{ UserService.currentUser.gender }}</h4>
@@ -99,7 +102,7 @@
                     </div>
 
                 </div>
-                
+
                 <button class="btn btn-lrg btn-primary center-block" ng-show="dataEditing" ng-click="UserService.edit(UserService.currentUser); dataEditing = !dataEditing"><span class="glyphicon glyphicon-floppy-disk"></span></button>
             </form>
 
