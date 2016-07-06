@@ -5,8 +5,8 @@ app.service("FoodService", ["$http", function($http) {
     this.foodList = [];
     this.food = {}; 
     
-    this.getFoods = function() {
-        return $http.get("/api/foods").then(function(response) {
+    this.getFoods = function(date) {
+        return $http.get("/api/foods", date).then(function(response) {
             self.foodList = response.data; 
         }, function(response) {
             alert("Error " + response.status + ": " + response.statusText); 

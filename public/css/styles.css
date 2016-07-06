@@ -1,3 +1,15 @@
 body {
     
 }
+
+.goals{
+    height: 85px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.tabmenu {
+    list-style-type: none;
+}
+
+.list-tabs
